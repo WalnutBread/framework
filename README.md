@@ -1,2 +1,2 @@
-# Glare
-Glare is simple PHP frameworks
+# Framework
+simple PHP frameworks
