@@ -1,0 +1,18 @@
+{
+    "name": "geollll/glare",
+    "description": "Glare is framework Libraries",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Glare\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Geol2",
+            "email": "big9401@gmail.com"
+        }
+    ],
+    "require": {}
+}
