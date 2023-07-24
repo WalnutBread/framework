@@ -1,7 +1,7 @@
 <?php
-namespace Glare\Databases;
+namespace WalnutBread\Databases;
 
-class Adaptor
+class DatabaseAdaptor
 {
     private static $pdo;
 

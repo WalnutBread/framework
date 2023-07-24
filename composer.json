@@ -1,11 +1,11 @@
 {
     "name": "walnutbread/framework",
-    "description": "Glare is framework Libraries",
+    "description": "WalnutBread is framework Libraries",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Glare\\": "src/"
+            "WalnutBread\\": "src/"
         }
     },
     "authors": [
