@@ -14,7 +14,7 @@ class Route
 
     public static function run() {
         foreach (self::$contexts as $context) {
-            if( $context->method === strtolower(Request::getMethod()) && is_array($context->match(Request::getPath())) ) {
+            if( $context->method === strtolower(Request::getMethod()) && is_array($urlParams = $context->match(Request::getPath())) ) {
                 if($context->runMiddlewares()) {
                     return call_user_func($context->handler, ...$urlParams);
                 }
