@@ -1,6 +1,8 @@
 <?php
 namespace WalnutBread\Redis;
 
+use Redis;
+
 class RedisAdapter
 {
     public static $redisApp;
