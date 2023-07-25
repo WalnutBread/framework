@@ -29,8 +29,8 @@ class RedisAdapter
         return self::$redisApp->get($key);
     }
 
-    public function zRange(string $key, int $start, int $end) {
-        return self::$redisApp->zRange($key, $start, $end);
+    public function zRange(string $key, int $start, int $end, bool $withScore) {
+        return self::$redisApp->zRange($key, $start, $end, $withScore);
     }
 
     public function zRevRank(string $key, string $member) {
