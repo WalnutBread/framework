@@ -5,7 +5,7 @@ namespace WalnutBread\Http;
 class Request
 {
     public static function getMethod() {
-        return filter_input(INPUT_POST, '_method') ? : $_SERVER['REQEUST_METHOD'];
+        return filter_input(INPUT_POST, '_method') ? : $_SERVER['REQUEST_METHOD'];
     }
 
     public static function getPath() {
