@@ -10,13 +10,13 @@ class RequestContext
 
     public $handler;
 
-    public $middleware;
+    public $middlewares;
 
-    public function __construct($method, $path, $handler, $middleware) {
+    public function __construct($method, $path, $handler, $middlewares = []) {
         $this->method = $method;
         $this->path = $path;
         $this->handler = $handler;
-        $this->middleware = $middleware;
+        $this->middlewares = $middlewares;
     }
 
     public function match($url) {
@@ -43,8 +43,8 @@ class RequestContext
     }
 
     public function runMiddlewares(): bool {
-        foreach($this->middleware as $middlewares) {
-            if(!$middlewares::process()) {
+        foreach($this->middlewares as $middleware) {
+            if( !$middleware::process() ) {
                 return false;
             }
         }
