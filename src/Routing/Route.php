@@ -2,6 +2,8 @@
 
 namespace WalnutBread\Routing;
 
+use WalnutBread\Http\Request;
+
 class Route
 {
     private static $contexts = [];
