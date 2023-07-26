@@ -29,6 +29,10 @@ class RedisAdapter
         return self::$redisApp->get($key);
     }
 
+    public function zAdd(string $key, int $score, string $member) {
+        return self::$redisApp->zAdd($key, $score, $member);
+    }
+
     public function zRange(string $key, int $start, int $end, bool $withScore) {
         return self::$redisApp->zRange($key, $start, $end, $withScore);
     }
