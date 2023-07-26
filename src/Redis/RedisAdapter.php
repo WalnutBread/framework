@@ -36,4 +36,8 @@ class RedisAdapter
     public function zRevRank(string $key, string $member) {
         return self::$redisApp->zRevRank($key, $member);
     }
+
+    public function zScore(string $key, string $member) {
+        return self::$redisApp->zScore($key, $member);
+    }
 }
