@@ -9,6 +9,10 @@ class Request
     }
 
     public static function getPath() {
-        return $_SERVER['PATH_INFO'] ?? '/';
+        if(array_key_exists("PATH_INFO", $_SERVER)) {
+            return $_SERVER['PATH_INFO'] ?? '/';
+        } else {
+            return explode("?", $_SERVER['REQUEST_URI'])[0];
+        }
     }
 }
