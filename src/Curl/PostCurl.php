@@ -20,6 +20,7 @@ class PostCurl
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 20); // (sec)
         $response = curl_exec($curl);
         if( empty($response) ) {
             return "{\"file_url\":\"error\"}";
