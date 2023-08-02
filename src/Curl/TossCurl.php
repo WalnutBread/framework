@@ -4,7 +4,7 @@ namespace WalnutBread\Curl;
 
 class TossCurl
 {
-    public static function post($url, $credential, $postData): string {
+    public static function post($url, $credential, $postData): array {
         $curlHandle = curl_init($url);
 
         curl_setopt_array($curlHandle, [
@@ -16,7 +16,12 @@ class TossCurl
             ],
             CURLOPT_POSTFIELDS => json_encode($postData)
         ]);
+        $httpCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
+        $response = curl_exec($curlHandle);
 
-        return curl_exec($curlHandle);
+        return [
+            "code" => $httpCode,
+            "response" => $response
+        ];
     }
 }
