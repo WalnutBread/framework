@@ -25,6 +25,8 @@ class PostCurl
         curl_setopt($curl, CURLOPT_FAILONERROR, true);
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         $response = curl_exec($curl);
+        $response = substr($response, strpos($response, "{"));
+
         curl_close($curl);
         if( curl_error($curl) ) {
             return curl_error($curl); # string
