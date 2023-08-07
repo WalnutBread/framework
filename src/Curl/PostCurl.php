@@ -37,4 +37,31 @@ class PostCurl
                 "response" => $response
         ];
     }
+
+    public function customPost($url, $postData, $header = null): array | string {
+        $header_data = array( "Content-Type: application/json", "charset=utf-8" );
+
+        // API REQ
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_FAILONERROR, true);
+        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $response = curl_exec($curl);
+        $response = substr($response, strpos($response, "{"));
+
+        curl_close($curl);
+        if( curl_error($curl) ) {
+            return curl_error($curl); # string
+        }
+
+        return [
+                "code" => $httpCode,
+                "response" => $response
+        ];
+    }
 }
