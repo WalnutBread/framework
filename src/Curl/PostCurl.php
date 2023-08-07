@@ -38,7 +38,7 @@ class PostCurl
         ];
     }
 
-    public function customPost($url, $postData, $header = null): array | string {
+    public static function customPost($url, $postData, $header = null): array | string {
         $header_data = array( "Content-Type: application/json", "charset=utf-8" );
 
         // API REQ
