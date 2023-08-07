@@ -4,7 +4,7 @@ namespace WalnutBread\Curl;
 
 class PostCurl
 {
-    public static function post($url, $postData, $header = null): string
+    public static function post($url, $postData, $header = null): array | string
     {
         $curl = curl_init();
         if( strpos($url, "https://") !== false ) {
@@ -13,21 +13,26 @@ class PostCurl
         }
         if( $header != null) {
             curl_setopt($curl, CURLOPT_HEADER, $header);
+        } else {
+            curl_setopt($curl, CURLOPT_HEADER, false);
         }
 
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_TIMEOUT, 20); // (sec)
+        curl_setopt($curl, CURLOPT_FAILONERROR, true);
+        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         $response = curl_exec($curl);
-        if( empty($response) ) {
-            return "{\"file_url\":\"error\"}";
-        }
-        $jsonData = substr($response, strpos($response, "{"));
         curl_close($curl);
+        if( curl_error($curl) ) {
+            return curl_error($curl); # string
+        }
 
-        return $jsonData;
+        return [
+                "code" => $httpCode,
+                "response" => $response
+        ];
     }
 }
