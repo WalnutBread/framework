@@ -4,7 +4,8 @@ namespace WalnutBread\Curl;
 
 class GetCurl
 {
-    public static function get($url, $getData, $header = null) {
+    public static function get($url, $getData, $header = null): array|string
+    {
         $url = $url."?".http_build_query($getData, '', '&');
 
         $curl = curl_init();
