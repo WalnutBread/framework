@@ -15,11 +15,13 @@ class DatabaseAdaptor
         if(self::$sth = self::$pdo->prepare($query)) {
             return self::$sth->execute($params);
         }
+        return false;
     }
 
     public static function getAll($query, $params = [], $className = 'stdClass') {
         if(self::exec($query, $params)) {
             return self::$sth->fetchAll(\PDO::FETCH_CLASS, $className);
         }
+        return false;
     }
 }
